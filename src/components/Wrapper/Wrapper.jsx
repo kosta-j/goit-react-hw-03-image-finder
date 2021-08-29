@@ -6,14 +6,20 @@ import s from './Wrapper.module.css';
 
 class Wrapper extends Component {
   state = {
-    contacts: [],
-    filter: '',
+    query: '',
+  };
+
+  updateQuery = async text => {
+    console.log(`wait`);
+
+    await this.setState({ query: text });
+    console.log(`state updated - ${text}`);
   };
 
   render() {
     return (
       <div className={s.wrapper}>
-        <Searchbar />
+        <Searchbar onSubmit={this.updateQuery} />
         <ImageGallery />
         <Button />
       </div>

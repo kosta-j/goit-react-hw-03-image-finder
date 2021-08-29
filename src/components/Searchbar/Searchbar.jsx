@@ -6,14 +6,24 @@ class Searchbar extends Component {
     query: '',
   };
 
-  onChangeInputHandler = e => {
+  handleChange = e => {
     this.setState({ query: e.currentTarget.value });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.onSubmit(this.state.query);
+    this.reset();
+  };
+
+  reset = () => {
+    this.setState({ query: '' });
   };
 
   render() {
     return (
       <header className={s.Searchbar}>
-        <form className={s.SearchForm}>
+        <form className={s.SearchForm} onSubmit={this.handleSubmit}>
           <button type="submit" className={s.SearchFormButton}>
             <span className={s.SearchFormButtonLabel}>Search</span>
           </button>
@@ -25,7 +35,7 @@ class Searchbar extends Component {
             autoFocus
             placeholder="Search images and photos"
             value={this.state.query}
-            onChange={this.onChangeInputHandler}
+            onChange={this.handleChange}
           />
         </form>
       </header>
