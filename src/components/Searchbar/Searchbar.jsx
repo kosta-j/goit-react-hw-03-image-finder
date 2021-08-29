@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
 import s from './Searchbar.module.css';
 
 class Searchbar extends Component {
@@ -12,6 +13,9 @@ class Searchbar extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    if (this.state.query.trim() === '') {
+      return toast.warn('Empty request - please input a query');
+    }
     this.props.onSubmit(this.state.query);
     this.reset();
   };

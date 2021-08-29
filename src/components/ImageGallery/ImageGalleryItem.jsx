@@ -1,12 +1,13 @@
 import s from './ImageGallery.module.css';
 
-function ImageGallery() {
+function ImageGalleryItem(props) {
+  const { src, alt } = props;
   return (
-    <li className={s.ImageGalleryItem}>
-      Gallery Item
-      {/* <img src="" alt="" className={s.ImageGalleryItemImage} /> */}
+    <li className={s.item}>
+      {/* {console.log({ hit })} */}
+      <img src={src} alt={alt} className={s.ImageGalleryItemImage} />
     </li>
   );
 }
 
-export default ImageGallery;
+export default ImageGalleryItem;
