@@ -1,10 +1,12 @@
 import s from './Button.module.css';
 
-function Button() {
+function Button({ onClick }) {
   return (
-    <button type="button" className={s.Button}>
-      Load more
-    </button>
+    <div className={s.wrapper}>
+      <button type="button" className={s.Button} onClick={onClick}>
+        Load more
+      </button>
+    </div>
   );
 }
 

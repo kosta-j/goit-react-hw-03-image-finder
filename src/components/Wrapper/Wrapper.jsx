@@ -10,11 +10,8 @@ class Wrapper extends Component {
     query: '',
   };
 
-  updateQuery = async text => {
-    console.log(`wait`);
-
-    await this.setState({ query: text });
-    console.log(`state updated - ${text}`);
+  updateQuery = text => {
+    this.setState({ query: text });
   };
 
   render() {
