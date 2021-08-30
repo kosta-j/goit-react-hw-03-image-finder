@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Component } from 'react';
 import { toast } from 'react-toastify';
 import Button from '../Button/Button';
+import Loader from '../Loader/Loader';
 import s from './ImageGallery.module.css';
 import ImageGalleryItem from './ImageGalleryItem';
 
@@ -81,22 +82,6 @@ class ImageGallery extends Component {
     } finally {
       this.setState({ loader: false });
     }
-
-    // axios
-    //   .get(
-    //     `${ImageGallery.URL}${query}&page=${page}&key=${ImageGallery.API_KEY}&image_type=photo&orientation=horizontal&per_page=12`,
-    //   )
-    //   .then(response => {
-    //     this.setState(prevState => ({
-    //       hits: [...prevState.hits, ...response.data.hits],
-    //     }));
-    //     if (response.data.hits.length === 0) {
-    //       return toast.warn('Oops, such item has not found');
-    //     }
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
   };
 
   incrementPage = () => {
@@ -119,7 +104,7 @@ class ImageGallery extends Component {
 
     return (
       <main>
-        {loader === true && <p>Loading...</p>}
+        {loader === true && <Loader />}
         <ul className={s.ImageGallery}>
           {hits.map(hit => (
             <ImageGalleryItem
