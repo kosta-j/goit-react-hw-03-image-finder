@@ -1,11 +1,16 @@
 import s from './ImageGallery.module.css';
 
 function ImageGalleryItem(props) {
-  const { src, alt } = props;
+  const { src, alt, showModal } = props;
   return (
     <li className={s.item}>
-      {/* {console.log({ hit })} */}
-      <img src={src} alt={alt} className={s.ImageGalleryItemImage} />
+      <img
+        width="600"
+        src={src}
+        alt={alt}
+        className={s.ImageGalleryItemImage}
+        onClick={showModal}
+      />
     </li>
   );
 }
