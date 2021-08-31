@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import s from './Searchbar.module.css';
@@ -46,5 +47,9 @@ class Searchbar extends Component {
     );
   }
 }
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func,
+};
 
 export default Searchbar;

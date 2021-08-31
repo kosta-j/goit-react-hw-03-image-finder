@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import s from './ImageGallery.module.css';
 
 function ImageGalleryItem(props) {
@@ -17,5 +18,10 @@ function ImageGalleryItem(props) {
     </li>
   );
 }
+
+ImageGalleryItem.propTypes = {
+  hit: PropTypes.object,
+  showModal: PropTypes.func,
+};
 
 export default ImageGalleryItem;

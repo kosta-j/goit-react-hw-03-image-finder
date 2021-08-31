@@ -1,4 +1,5 @@
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { toast } from 'react-toastify';
 import Button from '../Button/Button';
@@ -101,7 +102,6 @@ class ImageGallery extends Component {
   };
 
   showModal = data => {
-    console.log(data);
     this.setState({
       modal: true,
       modalHit: data,
@@ -111,6 +111,7 @@ class ImageGallery extends Component {
   hideModal = () => {
     this.setState({
       modal: false,
+      modalHit: {},
     });
   };
 
@@ -140,5 +141,9 @@ class ImageGallery extends Component {
     );
   }
 }
+
+ImageGallery.propTypes = {
+  query: PropTypes.string,
+};
 
 export default ImageGallery;

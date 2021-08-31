@@ -1,6 +1,8 @@
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { createPortal } from 'react-dom';
 import s from './Modal.module.css';
+
 const modalRoot = document.querySelector('#modal-root');
 
 class Modal extends Component {
@@ -34,8 +36,8 @@ class Modal extends Component {
   }
 }
 
-export default Modal;
+Modal.propTypes = {
+  onClose: PropTypes.func,
+};
 
-{
-  /* <img src={src} alt={alt} />; */
-}
+export default Modal;
