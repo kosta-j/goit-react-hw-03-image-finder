@@ -20,16 +20,19 @@ class ImageGallery extends Component {
     modalHit: {},
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(prevProps, prevState) {
     if (prevProps.query !== this.props.query) {
       this.resetState();
       this.loadImages();
     }
 
-    if (prevState.page !== this.state.page) {
-      this.loadMoreImages();
+    if (prevState.page !== this.state.page && this.state.page > 1) {
+      await this.loadMoreImages();
+      this.autoScroll();
     }
   }
+
+  testLoader;
 
   loadImages = async () => {
     try {
@@ -49,6 +52,7 @@ class ImageGallery extends Component {
       if (response.data.hits.length === 0) {
         return toast.warn('Oops, such item has not found');
       }
+      console.log('this is load');
     } catch (error) {
       console.log(error);
       return toast.error('Error while loading data. Try again later');
@@ -76,16 +80,20 @@ class ImageGallery extends Component {
         return toast.warn('Oops, such item has not found');
       }
 
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: 'smooth',
-      });
+      console.log('this is load more');
     } catch (error) {
       console.log(error);
       return toast.error('Error while loading data. Try again later');
     } finally {
       this.setState({ loader: false });
     }
+  };
+
+  autoScroll = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth',
+    });
   };
 
   incrementPage = () => {

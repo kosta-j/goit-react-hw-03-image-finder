@@ -4,7 +4,6 @@ import s from './ImageGallery.module.css';
 function ImageGalleryItem(props) {
   const { webformatURL, tags } = props.hit;
   const { showModal } = props;
-  // console.log(props.hit);
 
   return (
     <li className={s.item}>
