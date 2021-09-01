@@ -1,7 +1,8 @@
-import axios from 'axios';
+// import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { toast } from 'react-toastify';
+import apiService from '../../services/apiServise';
 import Button from '../Button/Button';
 import Loader from '../Loader/Loader';
 import Modal from '../Modal/Modal';
@@ -9,8 +10,8 @@ import s from './ImageGallery.module.css';
 import ImageGalleryItem from './ImageGalleryItem';
 
 class ImageGallery extends Component {
-  static API_KEY = '22389180-c3e3825fb04f5ed43216d445d';
-  static URL = 'https://pixabay.com/api/?q=';
+  // static API_KEY = '22389180-c3e3825fb04f5ed43216d445d';
+  // static URL = 'https://pixabay.com/api/?q=';
 
   state = {
     hits: [],
@@ -32,18 +33,13 @@ class ImageGallery extends Component {
     }
   }
 
-  testLoader;
-
   loadImages = async () => {
     try {
       const { query } = this.props;
       const { page } = this.state;
 
       this.setState({ loader: true });
-
-      const response = await axios.get(
-        `${ImageGallery.URL}${query}&page=${page}&key=${ImageGallery.API_KEY}&image_type=photo&orientation=horizontal&per_page=12`,
-      );
+      const response = await apiService(query, page);
 
       this.setState({
         hits: response.data.hits,
@@ -52,7 +48,6 @@ class ImageGallery extends Component {
       if (response.data.hits.length === 0) {
         return toast.warn('Oops, such item has not found');
       }
-      console.log('this is load');
     } catch (error) {
       console.log(error);
       return toast.error('Error while loading data. Try again later');
@@ -68,9 +63,7 @@ class ImageGallery extends Component {
 
       this.setState({ loader: true });
 
-      const response = await axios.get(
-        `${ImageGallery.URL}${query}&page=${page}&key=${ImageGallery.API_KEY}&image_type=photo&orientation=horizontal&per_page=12`,
-      );
+      const response = await apiService(query, page);
 
       this.setState(prevState => ({
         hits: [...prevState.hits, ...response.data.hits],
@@ -79,8 +72,6 @@ class ImageGallery extends Component {
       if (response.data.hits.length === 0) {
         return toast.warn('Oops, such item has not found');
       }
-
-      console.log('this is load more');
     } catch (error) {
       console.log(error);
       return toast.error('Error while loading data. Try again later');
